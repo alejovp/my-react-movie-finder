@@ -5,13 +5,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 // Components
-import SearchBar from './components/SearchBar';
+import MoviesList from './components/MoviesList';
 
 class App extends Component {
   render() {
     return (
       <div className="App container">
-        <SearchBar />
+        <MoviesList />
       </div>
     );
   }
