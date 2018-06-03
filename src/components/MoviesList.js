@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { fetchPopularMovies } from '../actions';
+
 import SearchBar from './SearchBar';
 
 class MoviesList extends Component {
+  componentWillMount() {
+    this.props.fetchPopularMovies();
+  }
+
   render() {
     return (
       <div className="container">
@@ -14,4 +22,4 @@ class MoviesList extends Component {
   }
 }
 
-export default MoviesList;
+export default connect(null, {fetchPopularMovies})(MoviesList);

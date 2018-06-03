@@ -11,13 +11,15 @@ const defaultState = {
 export default function (state = defaultState, action) {
   switch (action.type) {
     case FETCH_POP_MOVIES:
-      return { ...state, isLoading: true };
-
+    return { ...state, isLoading: true };
+    
     case FETCH_POP_MOVIES_OK: {
+      console.log(action.payload.data);
       // const { results } = action.payload.response.data;
-      console.log(action.payload.response);
+      
       // return { dataSource: results.map(extractMainData), isLoading: false };
-      break;
+
+      return null;
     }
 
     case FETCH_POP_MOVIES_KO:
