@@ -1,0 +1,55 @@
+.spin{
+    height:auto;
+    width:auto;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+}
+.spin span{
+    height:56px;
+    width:56px;
+    border:1px solid green;
+    display:block;
+    border-radius:50%;
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%, -50%);
+    animation:spin 1500ms ease-in-out infinite;
+}
+.spin .one{
+    animation-delay:500ms;
+    animation:spin 2000ms ease-in-out infinite;
+}
+.spin .two{
+    animation:spin 1700ms ease-in-out infinite;
+    animation-delay:300ms;
+    border:10px solid black;
+}
+.spin .two{
+    animation:spin 2000ms ease-in-out infinite;
+    border-color:grey;
+}
+
+@keyframes spin{
+    0%{
+        transform:scale(0);
+        opacity:1;
+    }
+    100%{
+        transform:scale(1.5);
+        opacity:0;
+    }
+}
+@keyframes hide{
+    0%{
+        opacity:0;
+    }
+    10%{
+        opacity:1;
+    }
+    100%{
+        opacity:1;
+    }
+}
