@@ -22,11 +22,13 @@ class App extends Component {
     return (
       <Provider store={createStoreWithMiddleware(rootReducer)}>
         <BrowserRouter>
-          <Switch>
-            <Route path="/detail/:id" component={MovieDetail} />
-            <Route exact path="/" component={MoviesList} />
-            <Route component={() => (<div>Oops,page not found!</div>)} />
-          </Switch>
+          <div>
+            <Switch>
+              <Route path="/detail/:id" component={MovieDetail} />
+              <Route exact path="/" component={MoviesList} />
+              <Route component={() => (<div>Oops,page not found!</div>)} />
+            </Switch>
+          </div>
         </BrowserRouter>
       </Provider>
     );

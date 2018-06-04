@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 // action creators
 import { fetchPopularMovies } from '../actions';
 // components
@@ -12,19 +13,20 @@ class MoviesList extends Component {
   }
 
   renderMovies() {
-    if (this.props.movies.isLoading) {
+    const { isLoading, moviesData } = this.props.movies;
+    if (isLoading) {
       return <Loading />;
     }
-    return this.props.movies.moviesData.map(movie => {
+    return moviesData.map(movie => {
         return (
           <div className="card" key={movie.id}>
             <img
               className="card-img-top"
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt="..." />
+              src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt="..." />
             <div className="card-body">
-              <h4 className="card-title">{movie.original_title}</h4>
+              <h3 className="card-title">{movie.original_title}</h3>
               <p className="card-text">{movie.overview}</p>
-              <a href="" className="btn btn-primary" role="button">Button</a>
+              <Link to={`/detail/${movie.id}`} className="btn btn-primary">More ></Link>
             </div>
           </div>
         );
