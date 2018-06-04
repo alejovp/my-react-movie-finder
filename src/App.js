@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
+
+// Reducers
 import rootReducer from './reducers';
 
 // CSS
@@ -17,9 +20,12 @@ class App extends Component {
   render() {
     return (
       <Provider store={createStoreWithMiddleware(rootReducer)}>
-        <div className="App container">
-          <MoviesList />
-        </div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path="/" component={MoviesList} />
+            <Route component={() => (<div>Oops,page not found!</div>)} />
+          </Switch>
+        </BrowserRouter>
       </Provider>
     );
   }
