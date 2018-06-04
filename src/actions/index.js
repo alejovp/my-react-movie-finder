@@ -11,6 +11,11 @@ export const SEARCH_MOVIE = 'search_movie';
 export const SEARCH_MOVIE_OK = 'search_movie_ok';
 export const SEARCH_MOVIE_KO = 'search_movie_ko';
 
+// Movie detail types
+export const FETCH_MOVIE_DETAIL = 'fetch_movie_detail';
+export const FETCH_MOVIE_DETAIL_OK = 'fetch_movie_detail_ok';
+export const FETCH_MOVIE_DETAIL_KO = 'fetch_movie_detail_ko';
+
 const { API_KEY } = Constants;
 const API_BASE_URL = `https://api.themoviedb.org/3`;
 
@@ -32,6 +37,17 @@ export function searchMovie(term) {
     SEARCH_MOVIE,
     SEARCH_MOVIE_OK,
     SEARCH_MOVIE_KO,
+    url
+  );
+}
+
+export function fetchMovieDetail(id) {
+  const url = `${API_BASE_URL}/movie/${id}?api_key=${API_KEY}`;
+  
+  return thunkRequest(
+    FETCH_MOVIE_DETAIL,
+    FETCH_MOVIE_DETAIL_OK,
+    FETCH_MOVIE_DETAIL_KO,
     url
   );
 }
