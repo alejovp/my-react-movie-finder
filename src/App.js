@@ -13,6 +13,7 @@ import './App.css';
 
 // Components
 import MoviesList from './components/MoviesList';
+import MovieDetail from './components/MovieDetail';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -22,6 +23,7 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(rootReducer)}>
         <BrowserRouter>
           <Switch>
+            <Route path="/detail/:id" component={MovieDetail} />
             <Route exact path="/" component={MoviesList} />
             <Route component={() => (<div>Oops,page not found!</div>)} />
           </Switch>
