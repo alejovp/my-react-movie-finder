@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+// action creators
 import { fetchPopularMovies } from '../actions';
-
+// components
 import SearchBar from './SearchBar';
 import Loading from './Loading';
 
