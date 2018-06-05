@@ -1,3 +1,7 @@
 .btn-right {
  float: right
 }
+
+.pad-bot {
+  padding-bottom: 60px;
+}

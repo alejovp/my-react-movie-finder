@@ -15,6 +15,7 @@ import './App.css';
 import Header from './components/Header';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
+import Footer from './components/Footer';
 import Error from './components/Error';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
@@ -31,6 +32,7 @@ class App extends Component {
               <Route exact path="/" component={MoviesList} />
               <Route component={Error} />
             </Switch>
+            <Footer />
           </div>
         </BrowserRouter>
       </Provider>

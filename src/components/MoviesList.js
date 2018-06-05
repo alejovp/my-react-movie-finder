@@ -8,6 +8,7 @@ import SearchBar from './SearchBar';
 import Loading from './Loading';
 
 class MoviesList extends Component {
+
   componentDidMount() {
     // if we haven't done a search yet then fetch for popular movies
     if (this.props.movies.moviesData.length === 0) {
@@ -18,8 +19,16 @@ class MoviesList extends Component {
 
   renderMovies() {
     const { isLoading, moviesData } = this.props.movies;
+
     if (isLoading) {
       return <Loading />;
+    }
+    if (moviesData.length === 0) {
+      return (
+        <div className="alert alert-warning" role="alert">
+          No movies were found for the term , please check the spelling and try again!
+        </div>
+      );
     }
     return moviesData.map(movie => {
         return (
@@ -38,13 +47,13 @@ class MoviesList extends Component {
   }
 
   render() {
-    const { isPopular } = this.props.movies;
+    const { moviesData } = this.props.movies;
 
     return (
       <div>
-        <SearchBar popular={isPopular}/>
+        <SearchBar />
         <div className="container">
-          <div className="card-columns">
+          <div className={moviesData.length > 0 ? 'card-columns' : ''}>
             {this.renderMovies()}
           </div>
         </div>

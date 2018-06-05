@@ -2,6 +2,8 @@
 
 This is a simple movie finder web app created with react + [redux](https://redux.js.org/) and [The Movie DB API](https://www.themoviedb.org/documentation/api).
 
+You can see the demo here: http://my-react-movie-finder.s3-website.eu-west-3.amazonaws.com/.
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

@@ -26,11 +26,18 @@ class SearchBar extends Component {
   }
 
   renderSubTitle() {
-    if (this.props.popular) {
+    const { isPopular, moviesData } = this.props.movies;
+
+    if (isPopular) {
       return <h2 className="jumbotron-heading">Popular Movies</h2>;
     }
 
-    return <h2 className="jumbotron-heading">Movie Results</h2>
+    return (
+      <div>
+        <h2 className="jumbotron-heading">Movie Results</h2>
+        <p>{moviesData.length} movies found!</p>
+      </div>
+    );
   }
 
   render() {
@@ -44,7 +51,8 @@ class SearchBar extends Component {
               placeholder="Type a movie name and press enter or click on search..."
               className="form-control col-md-6"
               value={this.state.term}
-              onChange={this.onInputChange} />
+              onChange={this.onInputChange} 
+              required/>
             <div className="input-group-append">
               <button className="btn btn-outline-secondary" type="submit">Search</button>
             </div>
@@ -58,4 +66,7 @@ class SearchBar extends Component {
 }
 
 // Mapping dispatch to props shortcut
-export default connect(null, { searchMovie })(SearchBar);
+function mapStateToProps({movies}) {
+  return { movies };
+}
+export default connect(mapStateToProps, { searchMovie })(SearchBar);

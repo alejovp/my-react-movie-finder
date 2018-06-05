@@ -27,12 +27,12 @@ class MovieDetail extends Component {
             <h2 className="jumbotron-heading">Movie Details</h2>
           </div>
         </div>
-        <div className="container">
+        <div className="container pad-bot">
           <div className="row">
             <div className="col-sm">
               <div className="text-center">
                 <img className="img-thumbnail"
-                  src={`https://image.tmdb.org/t/p/w780${details.backdrop_path}`}
+                  src={`https://image.tmdb.org/t/p/w500${details.backdrop_path}`}
                   alt={details.title} />
               </div>
               <hr />
