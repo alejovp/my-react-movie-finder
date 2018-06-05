@@ -30,14 +30,16 @@ export function fetchPopularMovies() {
   );
 }
 
-export function searchMovie(term) {
-  const url = `${API_BASE_URL}/search/movie?query=${term}&api_key=${API_KEY}`;
+export function searchMovie(term, pag) {
+  const url = `${API_BASE_URL}/search/movie?query=${term}&page=${pag}&api_key=${API_KEY}`;
 
   return thunkRequest(
     SEARCH_MOVIE,
     SEARCH_MOVIE_OK,
     SEARCH_MOVIE_KO,
-    url
+    url,
+    term,
+    pag
   );
 }
 
@@ -52,15 +54,17 @@ export function fetchMovieDetail(id) {
   );
 }
 
-function thunkRequest(type, typeOk, typeKo, url) {
+function thunkRequest(type, typeOk, typeKo, url, term, page) {
   // Redux Thunk will inject dispatch here:
   return dispatch => {
+    const query = { term, page }
     // Reducers may handle this to set a flag like isFetching
-    dispatch({ type });
+    dispatch({ type, payload: query });
 
     // Perform the actual API call
     return axios.get(url).then(
       response => {
+        console.log(response);
         // Reducers may handle this to show the data and reset isFetching
         dispatch({ type: typeOk, payload: response });
       },

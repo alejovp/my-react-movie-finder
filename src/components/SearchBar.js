@@ -21,12 +21,12 @@ class SearchBar extends Component {
 
   onFormSubmit(event) {
     event.preventDefault();
-    this.props.searchMovie(this.state.term);
+    this.props.searchMovie(this.state.term, 1);
     this.setState({ term: '' });
   }
 
   renderSubTitle() {
-    const { isPopular, moviesData } = this.props.movies;
+    const { isPopular, movies = [] } = this.props;
 
     if (isPopular) {
       return <h2 className="jumbotron-heading">Popular Movies</h2>;
@@ -35,12 +35,13 @@ class SearchBar extends Component {
     return (
       <div>
         <h2 className="jumbotron-heading">Movie Results</h2>
-        <p>{moviesData.length} movies found!</p>
+        <p>{movies.length} movies found!</p>
       </div>
     );
   }
 
   render() {
+  
     return (
       <div className="jumbotron text-center">
         <div className="container">
@@ -67,6 +68,9 @@ class SearchBar extends Component {
 
 // Mapping dispatch to props shortcut
 function mapStateToProps({movies}) {
-  return { movies };
+  return { 
+    movies: movies.moviesData.results,
+    isPopular: movies.isPopular
+  };
 }
 export default connect(mapStateToProps, { searchMovie })(SearchBar);

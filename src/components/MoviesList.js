@@ -10,27 +10,28 @@ import Loading from './Loading';
 class MoviesList extends Component {
 
   componentDidMount() {
+    const { movies = [] } = this.props;
     // if we haven't done a search yet then fetch for popular movies
-    if (this.props.movies.moviesData.length === 0) {
+    if (movies.length === 0) {
       
       this.props.fetchPopularMovies();
     }
   }
 
   renderMovies() {
-    const { isLoading, moviesData } = this.props.movies;
+    const { isLoading, movies = [] } = this.props;
 
     if (isLoading) {
       return <Loading />;
     }
-    if (moviesData.length === 0) {
+    if (movies.length === 0) {
       return (
         <div className="alert alert-warning" role="alert">
           No movies were found for the term , please check the spelling and try again!
         </div>
       );
     }
-    return moviesData.map(movie => {
+    return movies.map(movie => {
         return (
           <div className="card" key={movie.id}>
             <img
@@ -47,13 +48,14 @@ class MoviesList extends Component {
   }
 
   render() {
-    const { moviesData } = this.props.movies;
+    console.log(this.props);
+    const moviesList = this.props.movies || [];
 
     return (
       <div>
         <SearchBar />
         <div className="container">
-          <div className={moviesData.length > 0 ? 'card-columns' : ''}>
+          <div className={moviesList.length > 0 ? 'card-columns' : ''}>
             {this.renderMovies()}
           </div>
         </div>
@@ -63,7 +65,10 @@ class MoviesList extends Component {
 }
 
 function mapStateToProps(state) {
-  return { movies: state.movies };
+  return { 
+    movies: state.movies.moviesData.results,
+    isLoading: state.movies.isLoading
+   };
 }
 
 export default connect(mapStateToProps, {fetchPopularMovies})(MoviesList);

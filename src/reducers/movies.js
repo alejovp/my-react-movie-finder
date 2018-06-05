@@ -10,7 +10,8 @@ import {
 const defaultState = {
   isLoading: false,
   isPopular: true,
-  moviesData: []
+  moviesData: [],
+  term: ''
 }
 
 export default function (state = defaultState, action) {
@@ -19,15 +20,15 @@ export default function (state = defaultState, action) {
       return { ...state, isLoading: true, isPopular: true };
 
     case SEARCH_MOVIE:
-      return { ...state, isLoading: true, isPopular: false };
+      return { ...state, isLoading: true, isPopular: false, term: action.payload.term };
     
     case FETCH_POP_MOVIES_OK: 
-      const popMovies = action.payload.data.results;
+      const popMovies = action.payload.data;
       
       return { ...state, moviesData: popMovies, isLoading: false };
     
     case SEARCH_MOVIE_OK: 
-      const movieResult = action.payload.data.results;
+      const movieResult = action.payload.data;
       
       return { ...state, moviesData: movieResult, isLoading: false };
 
