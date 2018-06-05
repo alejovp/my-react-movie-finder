@@ -8,8 +8,12 @@ import SearchBar from './SearchBar';
 import Loading from './Loading';
 
 class MoviesList extends Component {
-  componentWillMount() {
-    this.props.fetchPopularMovies();
+  componentDidMount() {
+    // if we haven't done a search yet then fetch for popular movies
+    if (this.props.movies.moviesData.length === 0) {
+      
+      this.props.fetchPopularMovies();
+    }
   }
 
   renderMovies() {
@@ -26,7 +30,7 @@ class MoviesList extends Component {
             <div className="card-body">
               <h3 className="card-title">{movie.original_title}</h3>
               <p className="card-text">{movie.overview}</p>
-              <Link to={`/detail/${movie.id}`} className="btn btn-outline-secondary">Read More ></Link>
+              <Link to={`/detail/${movie.id}`} className="btn btn-outline-secondary">Read More &gt;</Link>
             </div>
           </div>
         );
