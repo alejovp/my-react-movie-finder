@@ -12,6 +12,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
 // Components
+import Header from './components/Header';
 import MoviesList from './components/MoviesList';
 import MovieDetail from './components/MovieDetail';
 
@@ -23,6 +24,7 @@ class App extends Component {
       <Provider store={createStoreWithMiddleware(rootReducer)}>
         <BrowserRouter>
           <div>
+            <Header />
             <Switch>
               <Route path="/detail/:id" component={MovieDetail} />
               <Route exact path="/" component={MoviesList} />

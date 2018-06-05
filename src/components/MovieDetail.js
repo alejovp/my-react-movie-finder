@@ -21,7 +21,11 @@ class MovieDetail extends Component {
       <div className="row">
       <Link to="/">Back</Link>
         <div className="col-sm">
-          <img src={`https://image.tmdb.org/t/p/w500${details.backdrop_path}`} alt="" />
+          <div className="text-center">
+            <img className="img-thumbnail" 
+                 src={`https://image.tmdb.org/t/p/w500${details.backdrop_path}`} 
+                 alt={details.title} />
+          </div>
           <hr />
           <h3>{details.title}</h3>
           <h5>{details.tagline}</h5>
@@ -33,8 +37,8 @@ class MovieDetail extends Component {
           <p>Runtime: {details.runtime} min</p>
           <p>Budget: {details.budget}$</p>
           <p>Revenue: {details.revenue}$</p>
-          <p>Popularity: <span class="badge badge-secondary">{details.popularity}</span></p>
-          <p>Vote Count: <span class="badge badge-secondary">{details.vote_count}</span></p>
+          <p>Popularity: <span className="badge badge-secondary">{details.popularity}</span></p>
+          <p>Vote Count: <span className="badge badge-secondary">{details.vote_count}</span></p>
           <p>Vote Average:</p>
           <div className="progress">
             <div className="progress-bar"

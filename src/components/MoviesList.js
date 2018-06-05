@@ -26,7 +26,7 @@ class MoviesList extends Component {
             <div className="card-body">
               <h3 className="card-title">{movie.original_title}</h3>
               <p className="card-text">{movie.overview}</p>
-              <Link to={`/detail/${movie.id}`} className="btn btn-primary">More ></Link>
+              <Link to={`/detail/${movie.id}`} className="btn btn-outline-secondary">Read More ></Link>
             </div>
           </div>
         );
@@ -34,11 +34,15 @@ class MoviesList extends Component {
   }
 
   render() {
+    const { isPopular } = this.props.movies;
+
     return (
-      <div className="container">
-        <SearchBar />
-        <div className="card-columns">
-          {this.renderMovies()}
+      <div>
+        <SearchBar popular={isPopular}/>
+        <div className="container">
+          <div className="card-columns">
+            {this.renderMovies()}
+          </div>
         </div>
       </div>
     );
