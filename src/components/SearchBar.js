@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 // action creators
 import { searchMovie } from '../actions';
-// components
+// CSS
 import './SearchBar.css'
 
 class SearchBar extends Component {
@@ -26,7 +26,7 @@ class SearchBar extends Component {
   }
 
   renderSubTitle() {
-    const { isPopular, movies = [] } = this.props;
+    const { isPopular, total, movies = [] } = this.props;
 
     if (isPopular) {
       return <h2 className="jumbotron-heading">Popular Movies</h2>;
@@ -35,7 +35,7 @@ class SearchBar extends Component {
     return (
       <div>
         <h2 className="jumbotron-heading">Movie Results</h2>
-        <p>{movies.length} movies found!</p>
+        <span>Showing ({movies.length}) movies of ({total}) found!</span>
       </div>
     );
   }
@@ -68,9 +68,11 @@ class SearchBar extends Component {
 
 // Mapping dispatch to props shortcut
 function mapStateToProps({movies}) {
+
   return { 
     movies: movies.moviesData.results,
-    isPopular: movies.isPopular
+    isPopular: movies.isPopular,
+    total: movies.moviesData.total_results
   };
 }
 export default connect(mapStateToProps, { searchMovie })(SearchBar);

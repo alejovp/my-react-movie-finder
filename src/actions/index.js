@@ -64,7 +64,6 @@ function thunkRequest(type, typeOk, typeKo, url, term, page) {
     // Perform the actual API call
     return axios.get(url).then(
       response => {
-        console.log(response);
         // Reducers may handle this to show the data and reset isFetching
         dispatch({ type: typeOk, payload: response });
       },

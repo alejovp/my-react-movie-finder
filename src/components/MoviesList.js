@@ -6,6 +6,7 @@ import { fetchPopularMovies } from '../actions';
 // components
 import SearchBar from './SearchBar';
 import Loading from './Loading';
+import FetchMore from './FetchMore';
 
 class MoviesList extends Component {
 
@@ -47,8 +48,15 @@ class MoviesList extends Component {
     });
   }
 
+  renderFetchMore() {
+    const { isPopular } = this.props;
+
+    if (!isPopular) {
+      return <FetchMore />;
+    }
+  }
+
   render() {
-    console.log(this.props);
     const moviesList = this.props.movies || [];
 
     return (
@@ -58,6 +66,7 @@ class MoviesList extends Component {
           <div className={moviesList.length > 0 ? 'card-columns' : ''}>
             {this.renderMovies()}
           </div>
+          {this.renderFetchMore()}
         </div>
       </div>
     );
@@ -67,7 +76,8 @@ class MoviesList extends Component {
 function mapStateToProps(state) {
   return { 
     movies: state.movies.moviesData.results,
-    isLoading: state.movies.isLoading
+    isLoading: state.movies.isLoading,
+    isPopular: state.movies.isPopular
    };
 }
 

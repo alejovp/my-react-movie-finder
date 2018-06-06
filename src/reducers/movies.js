@@ -29,7 +29,12 @@ export default function (state = defaultState, action) {
     
     case SEARCH_MOVIE_OK: 
       const movieResult = action.payload.data;
-      
+      // if we are fetching the first page then overwrite the popular movies
+      // if not then extend the existing results array with next page...
+      if (movieResult.page > 1) {
+        movieResult.results = [...state.moviesData.results, ...movieResult.results];
+      }
+
       return { ...state, moviesData: movieResult, isLoading: false };
 
     case FETCH_POP_MOVIES_KO:
