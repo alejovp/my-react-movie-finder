@@ -6,6 +6,22 @@ You can see the demo here: http://my-react-movie-finder.s3-website.eu-west-3.ama
 
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
+In order to run this project you need to have a 'The Mobie DB' API Key. This key will be used by the action creators and it's imported from a Constants file with the name of `API_KEY`.
+
+>If you don't have an API key you can generete one following this steps: [Getting Started](https://developers.themoviedb.org/3/getting-started/introduction) (You will need to sign up first).
+
+Your constants.js file must be like this:
+
+```
+const Constants = {
+  API_KEY: "<Your API key>"
+}
+
+export default Constants;
+```
+
+And needs to be placed in the root of the src folder (or change the path in the actions/index.js file to your file location).
+
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 

@@ -66,13 +66,13 @@ class SearchBar extends Component {
   }
 }
 
-// Mapping dispatch to props shortcut
 function mapStateToProps({movies}) {
-
+  
   return { 
     movies: movies.moviesData.results,
     isPopular: movies.isPopular,
     total: movies.moviesData.total_results
   };
 }
+// Mapping dispatch to props shortcut
 export default connect(mapStateToProps, { searchMovie })(SearchBar);
